@@ -45,6 +45,7 @@ const FTable: React.FC<FTableProps> = ({
       ]}
       dataSource={record.attributes.product_suppliers.data}
       pagination={false}
+      rowKey="id"
     />
   );
 
