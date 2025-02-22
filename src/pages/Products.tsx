@@ -3,6 +3,7 @@ import { fetchProducts } from '../services/fetchProducts';
 import Filters from '../components/products/Filters';
 import Table from '../components/products/Table';
 import { Product, FilterOption } from '../types/Product';
+import ExportExcelButton from '../components/products/ExportExcelButton';
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,7 +20,13 @@ const Products: React.FC = () => {
   const loadProducts = async () => {
     setLoading(true);
     try {
-      const response = await fetchProducts(page, pageSize, filters, sortBy, sortOrder);
+      const response = await fetchProducts(
+        page,
+        pageSize,
+        filters,
+        sortBy,
+        sortOrder
+      );
       setProducts(response.data);
       setTotalProducts(response.meta.total_products);
       setStatusOptions(response.meta.status_options || []);
@@ -52,6 +59,7 @@ const Products: React.FC = () => {
         statusOptions={statusOptions}
         stockConditionOptions={stockConditionOptions}
       />
+      <ExportExcelButton filters={filters} sortBy={sortBy} sortOrder={sortOrder} />
       <Table
         data={products}
         loading={loading}

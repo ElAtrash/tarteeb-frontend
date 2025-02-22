@@ -7,18 +7,23 @@ const apiVersion = import.meta.env.VITE_API_VERSION;
 export const fetchProducts = async (
   page: number,
   pageSize: number,
-  filters: Record<string, string | number>,
+  filters: Record<string, any>,
   sortBy?: string,
-  sortOrder?: 'asc' | 'desc'
+  sortOrder?: string
 ): Promise<ApiResponse> => {
-  const response = await axios.get<ApiResponse>(`${apiUrl}/api/${apiVersion}/products`, {
-    params: {
-      page: page - 1,
-      pageSize,
-      ...filters,
+  try {
+    const params = {
+      page,
+      page_size: pageSize,
       sort_by: sortBy,
       sort_order: sortOrder,
-    },
-  });
-  return response.data;
+      filters,
+    };
+
+    const response = await axios.get<ApiResponse>(`${apiUrl}/api/${apiVersion}/products`, { params });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
+  }
 };

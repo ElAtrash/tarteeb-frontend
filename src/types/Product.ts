@@ -29,7 +29,7 @@ export interface Product {
 }
 
 export interface ApiResponse {
-  data: Product[];
+  data: any[];
   meta: {
     pages: number;
     total_products: number;
