@@ -63,6 +63,7 @@ const FTable: React.FC<FTableProps> = ({
       dataSource={data}
       loading={loading}
       rowKey="id"
+      showSorterTooltip={false}
       expandable={{ expandedRowRender }}
       pagination={{
         current: currentPage,

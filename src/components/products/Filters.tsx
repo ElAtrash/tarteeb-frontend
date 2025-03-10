@@ -1,18 +1,18 @@
-import React from "react";
+import {FC, useState, useCallback} from "react";
 import { Input, Select, Row, Col } from "antd";
 import { FiltersProps } from "../../types/Product";
 import { debounce } from "lodash";
 
 const { Option } = Select;
 
-const Filters: React.FC<FiltersProps> = ({
+const Filters: FC<FiltersProps> = ({
   onApplyFilters,
   statusOptions,
   stockConditionOptions,
 }) => {
-  const [filters, setFilters] = React.useState<Record<string, string>>({});
+  const [filters, setFilters] = useState<Record<string, string>>({});
 
-  const debouncedApplyFilters = React.useCallback(
+  const debouncedApplyFilters = useCallback(
     debounce((filters: Record<string, string>) => {
       onApplyFilters(filters);
     }, 500),

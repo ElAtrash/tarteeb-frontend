@@ -1,13 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router';
-import Products from './pages/Products';
+import { FC } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { ConfigProvider } from "antd";
+import MainLayout from "./components/Layout";
+import Products from "./pages/Products";
+import "./App.css";
+import themeConfig from "./lib/theme/themeConfig";
 
-const App: React.FC = () => (
+const App: FC = () => (
   <Router>
-    <Routes>
-      <Route path="/" element={<Products />} />
-    </Routes>
+    <ConfigProvider theme={themeConfig}>
+      <MainLayout>
+        <Routes>
+          <Route path="/products" element={<Products />} />
+        </Routes>
+      </MainLayout>
+    </ConfigProvider>
   </Router>
-)
+);
 
-export default App
+export default App;
