@@ -1,0 +1,38 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 64px;
+}
+
+.logo-image {
+  height: 32px;
+  margin-right: 16px;
+}
+
+.header-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-menu {
+  border-bottom: none;
+  background: transparent;
+}
+
+.header-user {
+  background-color: rgb(64,170,163);
+}
+
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+}

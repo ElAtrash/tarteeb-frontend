@@ -1,8 +1,5 @@
-import axios from 'axios';
+import ApiClient from './apiClient';
 import { ApiResponse } from '../types/Product';
-
-const apiUrl = import.meta.env.VITE_API_BASE_URL
-const apiVersion = import.meta.env.VITE_API_VERSION;
 
 export const fetchProducts = async (
   page: number,
@@ -20,7 +17,7 @@ export const fetchProducts = async (
       filters,
     };
 
-    const response = await axios.get<ApiResponse>(`${apiUrl}/api/${apiVersion}/products`, { params });
+    const response = await ApiClient.get<ApiResponse>('/products', { params });
     return response.data;
   } catch (error) {
     console.error('Error fetching products:', error);
